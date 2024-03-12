@@ -8,8 +8,8 @@
 
 namespace DevNet\Security\Authentication;
 
-use DevNet\Http\Message\HttpException;
+use Exception;
 
-class AuthenticationException extends HttpException
+class AuthenticationException extends Exception
 {
 }
