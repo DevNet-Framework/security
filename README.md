@@ -19,4 +19,4 @@ composer require devnet/security
 Full documentation on how to use **DevNet Framework** is available at [devnet-framework.github.io](https://devnet-framework.github.io)
 
 ## License
-This library is licensed under the MIT license. See [License File](https://github.com/DevNet-Framework/web/blob/master/LICENSE) in the root folder for more information.
+This library is licensed under the MIT license. See [License File](https://github.com/DevNet-Framework/security/blob/master/LICENSE) in the root folder for more information.
