@@ -18,7 +18,7 @@ class AuthenticationBuilder
 {
     private array $authentications;
 
-    public function addCookie(string $authenticationScheme = AuthenticationScheme::CookieSession, Closure $configuration = null): void
+    public function addCookie(string $authenticationScheme = AuthenticationScheme::CookieSession, ?Closure $configuration = null): void
     {
         $options = new AuthenticationCookieOptions();
         if ($configuration) {
@@ -28,7 +28,7 @@ class AuthenticationBuilder
         $this->authentications[$authenticationScheme] = new AuthenticationCookieHandler($options);
     }
 
-    public function addJwtBearer(string $authenticationScheme = AuthenticationScheme::JwtBearer, Closure $configuration = null): void
+    public function addJwtBearer(string $authenticationScheme = AuthenticationScheme::JwtBearer, ?Closure $configuration = null): void
     {
         $options = new JwtBearerOptions();
         if ($configuration) {

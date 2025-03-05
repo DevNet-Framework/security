@@ -20,7 +20,7 @@ class ClaimsIdentity implements IEnumerable
     private ?string $authenticationType;
     private array $claims = [];
 
-    public function __construct(string $authenticationType = null, array $claims = [])
+    public function __construct(?string $authenticationType = null, array $claims = [])
     {
         $this->authenticationType = $authenticationType;
         $this->claims = $claims;

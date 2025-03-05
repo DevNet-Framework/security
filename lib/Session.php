@@ -52,7 +52,6 @@ class Session
         }
 
         $_COOKIE[$this->name] = $this->id;
-        //setcookie(session_name(), session_id(), time()+$lifetime);
         $this->set('SessionOptions', $this->options);
     }
 
