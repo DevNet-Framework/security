@@ -51,7 +51,7 @@ class JwtBearerHandler implements IAuthenticationHandler
     {
         try {
             $token = $this->readToken();
-            $jwtToken = $this->handler->validateToken($token, $this->SecurityKey, $this->Options->Issuer, $this->Options->Audience);
+            $jwtToken = $this->handler->validateToken($token, $this->Options->SecurityKey, $this->Options->Issuer, $this->Options->Audience);
             return new AuthenticationResult($jwtToken->Payload->Claims);
         } catch (\Throwable $exception) {
             return new AuthenticationResult($exception);
