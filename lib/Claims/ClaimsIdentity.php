@@ -10,30 +10,20 @@ namespace DevNet\Security\Claims;
 
 use DevNet\System\Collections\Enumerator;
 use DevNet\System\Collections\IEnumerable;
-use DevNet\System\PropertyTrait;
 use Closure;
 
 class ClaimsIdentity implements IEnumerable
 {
-    use PropertyTrait;
-
     private ?string $authenticationType;
     private array $claims = [];
+
+    public ?string $AuthenticationType { get => $this->authenticationType; }
+    public array $Claims { get => $this->claims; }
 
     public function __construct(?string $authenticationType = null, array $claims = [])
     {
         $this->authenticationType = $authenticationType;
         $this->claims = $claims;
-    }
-
-    public function get_AuthenticationType(): ?string
-    {
-        return $this->authenticationType;
-    }
-
-    public function get_Claims(): array
-    {
-        return $this->claims;
     }
 
     public function isAuthenticated(): bool

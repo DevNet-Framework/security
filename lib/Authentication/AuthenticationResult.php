@@ -8,16 +8,16 @@
 
 namespace DevNet\Security\Authentication;
 
-use DevNet\System\PropertyTrait;
 use DevNet\Security\Claims\ClaimsIdentity;
 use Exception;
 
 class AuthenticationResult
-{
-    use PropertyTrait;
-    
+{   
     private ?ClaimsIdentity $identity = null;
     private ?Exception $error = null;
+
+    public ?ClaimsIdentity $Identity { get => $this->identity; }
+    public ?Exception $Error { get => $this->error; }
 
     public function __construct(object $result)
     {
@@ -26,16 +26,6 @@ class AuthenticationResult
         } else if ($result instanceof Exception) {
             $this->error = $result;
         }
-    }
-
-    public function get_Identity(): ?ClaimsIdentity
-    {
-        return $this->identity;
-    }
-
-    public function get_Error(): ?Exception
-    {
-        return $this->error;
     }
 
     public function isSucceeded(): bool

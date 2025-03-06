@@ -8,14 +8,13 @@
 
 namespace DevNet\Security\Authorization;
 
-use DevNet\System\PropertyTrait;
-
 class AuthorizationResult
 {
-    use PropertyTrait;
-
     private bool $isSucceeded = true;
     private array $failedRequirements = [];
+
+    public bool $IsSucceeded { get => $this->isSucceeded; }
+    public array $FailedRequirements { get => $this->failedRequirements; }
 
     /**
      * @param array<IAuthorizationRequirement> $failedRequirements
@@ -26,15 +25,5 @@ class AuthorizationResult
             $this->isSucceeded = false;
             $this->failedRequirements = $failedRequirements;
         }
-    }
-
-    public function get_IsSucceeded(): bool
-    {
-        return $this->isSucceeded;
-    }
-
-    public function get_FailedRequirements(): array
-    {
-        return $this->failedRequirements;
     }
 }

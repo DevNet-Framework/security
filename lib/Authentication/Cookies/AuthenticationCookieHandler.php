@@ -9,7 +9,6 @@
 namespace DevNet\Security\Authentication\Cookies;
 
 use DevNet\System\TimeSpan;
-use DevNet\System\PropertyTrait;
 use DevNet\Security\Session;
 use DevNet\Security\Authentication\AuthenticationResult;
 use DevNet\Security\Authentication\IAuthenticationHandler;
@@ -19,10 +18,11 @@ use Exception;
 
 class AuthenticationCookieHandler implements IAuthenticationHandler, IAuthenticationSigningHandler
 {
-    use PropertyTrait;
-
     private AuthenticationCookieOptions $options;
     private Session $session;
+
+    public AuthenticationCookieOptions $Options { get => $this->options; }
+    public Session $Session { get => $this->session; }
 
     public function __construct(AuthenticationCookieOptions $options)
     {
@@ -32,16 +32,6 @@ class AuthenticationCookieHandler implements IAuthenticationHandler, IAuthentica
         if (!$this->options->ExpireTime) {
             $this->options->ExpireTime = new TimeSpan();
         }
-    }
-
-    public function get_Options(): AuthenticationCookieOptions
-    {
-        return $this->options;
-    }
-
-    public function get_Session(): Session
-    {
-        return $this->session;
     }
 
     public function authenticate(): AuthenticationResult

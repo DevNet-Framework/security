@@ -8,22 +8,15 @@
 
 namespace DevNet\Security\Tokens\Csrf;
 
-use DevNet\System\PropertyTrait;
-
 class AntiForgeryToken
 {
-    use PropertyTrait;
-
     private string $value;
+
+    public string $Value { get => $this->value; }
 
     public function __construct()
     {
         $this->value = bin2hex(random_bytes(32));
-    }
-
-    public function get_Value(): string
-    {
-        return $this->value;
     }
 
     public function __toString(): string

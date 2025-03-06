@@ -9,29 +9,19 @@
 namespace DevNet\Security\Authorization;
 
 use DevNet\System\Async\Task;
-use DevNet\System\PropertyTrait;
 
 class ClaimsRequirement implements IAuthorizationRequirement, IAuthorizationHandler
 {
-    use PropertyTrait;
-
     protected string $claimType;
     protected array $allowedValues;
+
+    public string $ClaimType { get => $this->claimType; }
+    public array $AllowedValues { get => $this->allowedValues; }
 
     public function __construct(string $claimType, array $allowedValues = [])
     {
         $this->claimType = $claimType;
         $this->allowedValues = $allowedValues;
-    }
-
-    public function get_ClaimType(): string
-    {
-        return $this->claimType;
-    }
-
-    public function get_AllowedValues(): array
-    {
-        return $this->allowedValues;
     }
 
     public function getHandler(): IAuthorizationHandler

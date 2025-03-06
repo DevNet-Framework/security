@@ -8,17 +8,19 @@
 
 namespace DevNet\Security\Authorization;
 
-use DevNet\System\PropertyTrait;
 use DevNet\Security\Claims\ClaimsIdentity;
 
 class AuthorizationContext
 {
-    use PropertyTrait;
-
     private ?ClaimsIdentity $user = null;
     private array $requirements = [];
     private array $pendingRequirements = [];
     private array $failedRequirements = [];
+
+    public ?ClaimsIdentity $User { get => $this->user; }
+    public array $Requirements { get => $this->requirements; }
+    public array $PendingRequirements { get => $this->pendingRequirements; }
+    public array $FailedRequirements { get => $this->failedRequirements; }
 
     public function __construct(array $requirements = [], ?ClaimsIdentity $user = null)
     {
@@ -27,26 +29,6 @@ class AuthorizationContext
         foreach ($requirements as $requirement) {
             $this->pendingRequirements[spl_object_id($requirement)] = $requirement;
         }
-    }
-
-    public function get_Requirements(): array
-    {
-        return $this->requirements;
-    }
-
-    public function get_FailedRequirements(): array
-    {
-        return $this->requirements;
-    }
-
-    public function get_PendingRequirements(): array
-    {
-        return $this->requirements;
-    }
-
-    public function get_User(): ?ClaimsIdentity
-    {
-        return $this->user;
     }
 
     public function fail(?IAuthorizationRequirement $requirement = null): void

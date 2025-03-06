@@ -8,26 +8,19 @@
 
 namespace DevNet\Security\Tokens\Csrf;
 
-use DevNet\System\PropertyTrait;
-
 class AntiForgery implements IAntiForgery
 {
-    use PropertyTrait;
-
     private AntiForgeryOptions $options;
     private AntiForgeryTokenGenerator $generator;
     private AntiForgeryTokenStore $store;
+
+    public AntiForgeryOptions $Options { get => $this->options; }
 
     public function __construct(AntiForgeryOptions $options)
     {
         $this->options   = $options;
         $this->generator = new AntiForgeryTokenGenerator();
         $this->store     = new AntiForgeryTokenStore($options);
-    }
-
-    public function get_Options(): AntiForgeryOptions
-    {
-        return $this->options;
     }
 
     public function getToken(): AntiForgeryToken

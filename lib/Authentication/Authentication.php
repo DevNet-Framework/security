@@ -8,29 +8,19 @@
 
 namespace DevNet\Security\Authentication;
 
-use DevNet\System\PropertyTrait;
 use DevNet\Security\Claims\ClaimsIdentity;
 use Exception;
 
 class Authentication implements IAuthentication
 {
-    use PropertyTrait;
-
     private array $handlers;
+
+    public array $Schemes { get => array_keys($this->handlers); }
+    public array $Handlers { get => $this->handlers; }
 
     public function __construct(array $handlers)
     {
         $this->handlers = $handlers;
-    }
-
-    public function get_Schemes(): array
-    {
-        return array_keys($this->handlers);
-    }
-
-    public function get_Handlers(): array
-    {
-        return $this->handlers;
     }
 
     public function authenticate(?string $scheme = null): AuthenticationResult

@@ -8,7 +8,6 @@
 
 namespace DevNet\Security\Authentication\JwtBearer;
 
-use DevNet\System\PropertyTrait;
 use DevNet\Security\Authentication\AuthenticationResult;
 use DevNet\Security\Authentication\IAuthenticationHandler;
 use DevNet\Security\Tokens\Jwt\JwtSecurityTokenHandler;
@@ -16,20 +15,15 @@ use Exception;
 
 class JwtBearerHandler implements IAuthenticationHandler
 {
-    use PropertyTrait;
-
     private JwtBearerOptions $options;
     private JwtSecurityTokenHandler $handler;
+
+    public JwtBearerOptions $Options { get => $this->options; }
 
     public function __construct(JwtBearerOptions $options)
     {
         $this->options = $options;
         $this->handler = new JwtSecurityTokenHandler();
-    }
-
-    public function get_Options(): JwtBearerOptions
-    {
-        return $this->options;
     }
 
     public function readToken(): string
@@ -51,7 +45,7 @@ class JwtBearerHandler implements IAuthenticationHandler
     {
         try {
             $token = $this->readToken();
-            $jwtToken = $this->handler->validateToken($token, $this->SecurityKey, $this->Options->Issuer, $this->Options->Audience);
+            $jwtToken = $this->handler->validateToken($token, $this->Options->SecurityKey, $this->Options->Issuer, $this->Options->Audience);
             return new AuthenticationResult($jwtToken->Payload->Claims);
         } catch (\Throwable $exception) {
             return new AuthenticationResult($exception);
