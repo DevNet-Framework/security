@@ -36,12 +36,12 @@ class AuthorizationContext
 
     public function get_FailedRequirements(): array
     {
-        return $this->requirements;
+        return $this->failedRequirements;
     }
 
     public function get_PendingRequirements(): array
     {
-        return $this->requirements;
+        return $this->pendingRequirements;
     }
 
     public function get_User(): ?ClaimsIdentity
