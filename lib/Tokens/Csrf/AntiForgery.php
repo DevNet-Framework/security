@@ -15,14 +15,12 @@ class AntiForgery implements IAntiForgery
     use PropertyTrait;
 
     private AntiForgeryOptions $options;
-    private AntiForgeryTokenGenerator $generator;
     private AntiForgeryTokenStore $store;
 
     public function __construct(AntiForgeryOptions $options)
     {
-        $this->options   = $options;
-        $this->generator = new AntiForgeryTokenGenerator();
-        $this->store     = new AntiForgeryTokenStore($options);
+        $this->options = $options;
+        $this->store   = new AntiForgeryTokenStore($options);
     }
 
     public function get_Options(): AntiForgeryOptions
