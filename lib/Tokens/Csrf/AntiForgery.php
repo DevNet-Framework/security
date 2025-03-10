@@ -11,16 +11,14 @@ namespace DevNet\Security\Tokens\Csrf;
 class AntiForgery implements IAntiForgery
 {
     private AntiForgeryOptions $options;
-    private AntiForgeryTokenGenerator $generator;
     private AntiForgeryTokenStore $store;
 
     public AntiForgeryOptions $Options { get => $this->options; }
 
     public function __construct(AntiForgeryOptions $options)
     {
-        $this->options   = $options;
-        $this->generator = new AntiForgeryTokenGenerator();
-        $this->store     = new AntiForgeryTokenStore($options);
+        $this->options = $options;
+        $this->store   = new AntiForgeryTokenStore($options);
     }
 
     public function getToken(): AntiForgeryToken
